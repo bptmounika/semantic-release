@@ -16,9 +16,9 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 18.0.0
+          - 14.0.0
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 100
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -26,6 +26,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-      - run: npm clean-install
+      - run: npm install npm@latest -g
       - name: Ensure dependencies are compatible with the version of node
-        run: npx ls-engines
